@@ -17,3 +17,11 @@ La práctica tiene como objetivo comprender el funcionamiento básico de los mé
 - Trabajar con datos con formatos JSON.
 - Comprender el uso de códigos de estado HTTP.
 - Ejecutar y verificar el funcionamiento del servidor mediante pruebas automatizadas.
+
+## Tecnologías utilizadas
+
+- Python3
+- WSGI
+- curl
+- Bash (ejecución de las pruebas automatizadas)
+- JSON (intercambio de información)
