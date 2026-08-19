@@ -1,21 +1,29 @@
+#Permite trabajar con datos en formato JSON
 import json
 
+#Importamos un servidor HTTP básico que utiliza WSGI
 from wsgiref.simple_server import make_server
 
+#Lista donde se guardarán las tareas
 tasks = []
+#Contador para asignar un ID único
 next_id = 1
 
 def application(environ, start_response):
 
     global next_id
 
+    #Obtener el método HTTP
     method = environ["REQUEST_METHOD"]
+    #Obtener la ruta, por ejemplo, /tasks
     path = environ["PATH_INFO"]
 
+    #Con estos prints mostrará en terminal la petición realizada
     print("Método:", method)
     print("Ruta:", path)
 
     #GET /tasks
+    #Devuelve todas las tareas almacenadas
     if method == "GET" and path == "/tasks":
 
         start_response(
@@ -28,6 +36,7 @@ def application(environ, start_response):
         return [response.encode("utf-8")]
 
     #GET /tasks/<id>
+    #Devuelve una tarea específica utilizando su ID
     if method == "GET" and path.startswith("/tasks/"):
 
         parts = path.split("/")
@@ -53,6 +62,8 @@ def application(environ, start_response):
 
         return [b"Tarea no encontrada"]
 
+    #POST /tasks
+    #Crea una nueva tarea
     if method == "POST" and path == "/tasks":
 
         length = int(environ.get("CONTENT_LENGTH", 0))
@@ -78,6 +89,8 @@ def application(environ, start_response):
 
         return [response.encode("utf-8")]
 
+    #PUT /tasks/<id>
+    #Actualiza una tarea existente
     if method == "PUT" and path.startswith("/tasks/"):
 
         parts = path.split("/")
@@ -107,6 +120,8 @@ def application(environ, start_response):
 
                 return [response.encode("utf-8")]
 
+    #PATCH /tasks/<id>
+    #Modifica solamente los campos de la tarea
     if method == "PATCH" and path.startswith("/tasks/"):
 
         parts = path.split("/")
@@ -140,6 +155,8 @@ def application(environ, start_response):
 
                 return [response.encode("utf-8")]
 
+    #DELETE /tasks/<id>
+    #Elimina una tarea existente
     if method == "DELETE" and path.startswith("/tasks/"):
 
         parts = path.split("/")
@@ -159,6 +176,8 @@ def application(environ, start_response):
 
                 return [b"Tarea eliminada"]
 
+    #404 - Ruta no encontrada
+    #Si nunca de lasa condiciones anteriores fue cumplida, finaliza aqui
     start_response(
         "404 Not Found",
         [("Content-Type", "text/plain")]
@@ -166,6 +185,7 @@ def application(environ, start_response):
 
     return [b"Ruta no encontrada"]
 
+#Creacion del servidor
 server = make_server("localhost", 9292, application)
 
 print("Servidor escuchando en http://localhost:9292")
