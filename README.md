@@ -86,4 +86,4 @@ Eso significa que cada ejecución del POST **ejecuta un nuevo recurso**.
 
 **PATCH**: Aplica modificaciones parciales a un recurso existente, enviando solo los campos que cambian.
 
-**DELETE**: Elimina el recurso especificado; es **idempotente** (eliminar un recurso inexistente no genera error)
+**DELETE**: Elimina el recurso especificado; es **idempotente** (eliminar una tarea inexistente no genera error)
