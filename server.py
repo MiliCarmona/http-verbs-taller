@@ -54,14 +54,7 @@ def application(environ, start_response):
                 response = json.dumps(task)
 
                 return [response.encode("utf-8")]
-
-        start_response(
-            "404 Not Found",
-            [("Content-Type", "text/plain")]
-        )
-
-        return [b"Tarea no encontrada"]
-
+                
     #POST /tasks
     #Crea una nueva tarea
     if method == "POST" and path == "/tasks":
