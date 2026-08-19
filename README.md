@@ -58,6 +58,7 @@ El script realiza distintas solicitudes al servidor y verifica, entre otras cosa
 En esta sección se encuentran las consignas correspondientes al taller.
 
 **1)** Un único archivo Python (p. ej. `server.py`) que se ejecute con `uv run python server.py` y quede escuchando en `http://localhost:9292`.
+
 **2)** En el README, una breve explicación con tus palabras de la diferencia entre `GET`, `POST`, `PATCH` y `DELETE`, y por qué `POST` no es idempotente.
 
 ## Respuestas de las consignas
