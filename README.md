@@ -74,7 +74,8 @@ En esta sección se encuentran las consignas correspondientes al taller.
 **GET**: Obtiene la tarea sin modificar el estado del servidor; es **idempotente**.
 
 **POST**: Se utiliza para **crear** nuevas tareas en el servidor; no es **idempotente**. ¿Por qué no es idempotente? Porque cada ejecución de la misma solicitud puede generar un **estado diferente** en el servidor, creando **nuevas tareas** adicionales.
-Si ejecutamos la misma petición **POST** tres veces con la tarea: `{"title": "Estudiar Python", "done": false}`:
+
+Por ejemplo, si ejecutamos la misma petición **POST** tres veces con la tarea: `{"title": "Estudiar Python", "done": false}`:
 
 **1)** El servidor crea `[{"id": 1, "title": "Estudiar Python", "done": false}]`, pero hasta ahí todo está perfecto.
 
