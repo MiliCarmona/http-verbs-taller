@@ -74,9 +74,13 @@ En esta sección se encuentran las consignas correspondientes al taller.
 
 **POST**: Se utiliza para **crear** nuevas tareas en el servidor; no es **idempotente**. ¿Por qué no es idempotente? Porque cada ejecución de la misma solicitud puede generar un **estado diferente** en el servidor, creando **nuevas tareas** adicionales.
 Si ejecutamos la misma petición **POST** tres veces con la tarea: `{"title": "Estudiar Python", "done": false}`:
+
 **1)** El servidor crea `[{"id": 1, "title": "Estudiar Python", "done": false}]`, pero hasta ahí todo está perfecto.
+
 **2)** El servidor vuelve a crear una tarea: `[{"id": 1, "title": "Estudiar Python", "done": false}, {"id": 1, "title": "Estudiar Python", "done": false}]`
+
 **3)** Finalmente, al tercer POST vuelve a crear la misma tarea: `[{"id": 1, "title": "Estudiar Python", "done": false}, {"id": 1, "title": "Estudiar Python", "done": false}, {"id": 1, "title": "Estudiar Python", "done": false}]`
+
 Eso significa que cada ejecución del POST **ejecuta un nuevo recurso**.
 
 **PATCH**: Aplica modificaciones parciales a un recurso existente, enviando solo los campos que cambian.
